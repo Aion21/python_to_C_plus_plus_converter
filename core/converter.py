@@ -2,7 +2,7 @@ from typing import Generator
 from pathlib import Path
 
 from core import get_messages
-from models import OpenAIClient, ClaudeClient
+from models import OpenAIClient, ClaudeClient, GeminiClient
 
 
 class CodeConverter:
@@ -21,7 +21,7 @@ class CodeConverter:
         """Initialize the appropriate AI model client.
 
         Args:
-            model_name: Name of the model ("GPT" or "Claude").
+            model_name: Name of the model ("GPT", "Claude", or "Gemini").
 
         Returns:
             An instance of the appropriate model client.
@@ -29,10 +29,13 @@ class CodeConverter:
         Raises:
             ValueError: If an unknown model is specified.
         """
-        if model_name.upper() == "GPT":
+        model_upper = model_name.upper()
+        if model_upper == "GPT":
             return OpenAIClient()
-        elif model_name.upper() == "CLAUDE":
+        elif model_upper == "CLAUDE":
             return ClaudeClient()
+        elif model_upper == "GEMINI":
+            return GeminiClient()
         else:
             raise ValueError(f"Unknown model: {model_name}")
 
@@ -54,7 +57,12 @@ class CodeConverter:
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": user_message}
             ])
-        else:  # Claude
+        elif isinstance(self.model, ClaudeClient):
+            stream = self.model.stream_completion(
+                [{"role": "user", "content": user_message}],
+                system=system_message
+            )
+        else:  # Gemini
             stream = self.model.stream_completion(
                 [{"role": "user", "content": user_message}],
                 system=system_message

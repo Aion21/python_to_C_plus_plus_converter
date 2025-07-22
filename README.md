@@ -2,12 +2,24 @@
 
 A tool that converts Python code to optimized C++ for improved performance, featuring a user-friendly web interface for testing and comparing execution results.
 
+> **Important Security Notice**
+
+This application executes Python and C++ code on your local machine using `exec()`. For security reasons:
+
+1. **Only run this application locally** - Never expose it to the internet or untrusted networks
+2. **Execute with caution** - The application runs code with the same permissions as the user
+3. **Review all code** - Always inspect AI-generated code before execution
+4. **Use in a controlled environment** - Consider using a virtual machine or container for additional isolation
+5. **Monitor resource usage** - Some operations might be resource-intensive
+
+By using this application, you acknowledge that you understand these risks and accept full responsibility for any consequences of running the generated code.
+
 ## Features
 
-- **AI-Powered Conversion**: Utilizes advanced AI models (GPT and Claude) to convert Python code to optimized C++
+- **AI-Powered Conversion**: Utilizes advanced AI models (GPT, Claude, and Gemini) to convert Python code to optimized C++
 - **Performance Comparison**: Run and compare execution times between Python and C++ implementations
 - **User-Friendly Interface**: Built with Gradio for an intuitive web-based experience
-- **Multiple AI Models**: Choose between different AI models for conversion
+- **Multiple AI Models**: Choose between different AI models for conversion (GPT, Claude, Gemini)
 - **Real-time Execution**: Execute both Python and C++ code directly from the interface
 
 ## Installation
@@ -31,10 +43,12 @@ A tool that converts Python code to optimized C++ for improved performance, feat
 
 4. Set up your API keys:
    - Create a `.env` file in the project root
-   - Add your OpenAI and/or Anthropic API keys:
+   - Add your API keys (at least one is required):
      ```
+     # Required: At least one of these API keys must be provided
      OPENAI_API_KEY=your_openai_api_key
      ANTHROPIC_API_KEY=your_anthropic_api_key
+     GEMINI_API_KEY=your_gemini_api_key
      ```
 
 ## Usage
@@ -49,7 +63,7 @@ The application will start a local web server, and you can access it in your bro
 ### How to Use
 
 1. Enter or paste your Python code in the input area
-2. Select your preferred AI model (GPT or Claude)
+2. Select your preferred AI model (GPT, Claude, or Gemini)
 3. Click "Convert to C++" to generate the C++ equivalent
 4. Use the "Run Python" and "Run C++" buttons to execute and compare the performance
 
@@ -108,14 +122,14 @@ int main() {
     
     return 0;
 }
-```
 
 ## Requirements
 
 - Python 3.8+
-- C++ compiler (clang++ recommended for M1 Mac)
-- OpenAI API key (for GPT models)
-- Anthropic API key (for Claude models)
+- At least one of the following API keys is required:
+  - OpenAI API key (for GPT models)
+  - Anthropic API key (for Claude models)
+  - Google AI API key (for Gemini models)
 
 ## Dependencies
 

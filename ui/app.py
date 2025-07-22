@@ -49,7 +49,7 @@ class CodeConverterApp:
 
             with gr.Row():
                 self.model_selector = gr.Dropdown(
-                    ["GPT", "Claude"],
+                    ["GPT", "Claude", "Gemini"],
                     label="AI Model",
                     value="GPT"
                 )
