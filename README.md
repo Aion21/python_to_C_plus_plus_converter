@@ -26,8 +26,8 @@ By using this application, you acknowledge that you understand these risks and a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Aion21/python_to_C_plus_plus_converter.git
-   cd python_to_C_plus_plus_converter
+   git clone https://github.com/Aion21/python_to_Cpp_converter.git
+   cd python_to_Cpp_converter
    ```
 
 2. Create and activate a virtual environment (recommended):
